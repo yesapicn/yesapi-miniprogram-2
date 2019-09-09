@@ -1,0 +1,39 @@
+<view bind:__l="__l">
+  <page-head title="{{title}}"></page-head>
+  <view class="uni-title uni-common-pl">仅用于开发和测试，不得用于商业用途。</view>
+  <view class="uni-list">
+    <view class="uni-list-cell">
+      <view class="uni-list-cell-left">当前选择</view>
+      <view class="uni-list-cell-db">
+        <picker range="{{arrays}}" data-event-opts="{{[['change',[['bindPickerChange',['$event']]]]]}}" bindchange="__e">
+          <view class="uni-input">{{array[index]['name']}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view>
+    <form data-event-opts="{{[['submit',[['searchOkay']]]]}}" bindsubmit="__e">
+      <view class="uni-list">
+        <view class="uni-list-cell">
+          <view class="uni-list-cell-left">输入歌曲名称</view>
+          <view class="uni-list-cell-db">
+            <input class="uni-input" type="text" placeholder="请输入歌名" name="title" data-event-opts="{{[['input',[['__set_model',['input','$event',[]]]]]]}}" value="{{input}}" bindinput="__e" />
+          </view>
+        </view>
+      </view>
+      <view class="uni-padding-wrap">
+        <view class="uni-btn-v">
+          <button type="primary" formType="submit">搜索</button>
+        </view>
+      </view>
+      <block wx:for="{{music}}" wx:for-item="item" wx:for-index="key" wx:key="key">
+        <view>
+          <view class="page-section page-section-gap" style="text-align:center;">
+            <audio style="text-align:left;" src="{{item.url}}" poster="{{item.pic}}" name="{{item.title}}" author="{{item.author}}" controls></audio>
+          </view>
+          <view style="margin-bottom:20px;"></view>
+        </view>
+      </block>
+    </form>
+  </view>
+</view>
